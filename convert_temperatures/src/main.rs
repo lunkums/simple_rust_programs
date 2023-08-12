@@ -44,15 +44,15 @@ fn report(temp: f32, unit: Unit) {
             let other_unit = Unit::C;
             let converted = f_to_c(temp);
             println!("{temp}°{unit} -> {converted}°{other_unit}");
-        },
+        }
         Unit::C => {
             let other_unit = Unit::F;
             let converted = c_to_f(temp);
             println!("{temp}°{unit} -> {converted}°{other_unit}");
-        },
+        }
         Unit::None => {
             println!("Invalid unit. Unable to convert.");
-        },
+        }
     };
     println!();
 }
@@ -95,7 +95,7 @@ fn convert() {
             Some(input) => String::from(*input),
             None => {
                 println!("No unit provided. Please specify Fahrenheit or Celsius.");
-    
+
                 let mut input = String::new();
                 io::stdin()
                     .read_line(&mut input)
@@ -115,7 +115,7 @@ fn convert() {
             } else {
                 Unit::None
             };
-            
+
             if !matches!(unit, Unit::None) {
                 break unit;
             }
@@ -127,7 +127,7 @@ fn convert() {
                 .read_line(&mut input)
                 .expect("Failed to read line.");
         };
-        
+
         // Convert the temperature and report the results
         report(temp, unit);
     }
