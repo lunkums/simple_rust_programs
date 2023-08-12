@@ -30,7 +30,7 @@ fn get_num() -> u32 {
                 break num;
             }
             Err(_) => {
-                println!("'{input}' is not a number. Try again.");
+                println!("'{input}' is either not a number or is too large. Try again.");
                 continue;
             }
         };
@@ -40,15 +40,13 @@ fn get_num() -> u32 {
 }
 
 fn fibonacci(n: u32) -> u64 {
-    let mut i: u32 = n;
     let mut ans: u64 = 0;
     let mut last: u64 = 1;
 
-    while i > 0 {
+    for _ in 0..n {
         let temp = ans;
         ans += last;
         last = temp;
-        i -= 1;
     }
 
     ans
