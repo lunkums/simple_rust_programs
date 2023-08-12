@@ -6,8 +6,10 @@ fn main() {
         if n == 0 {
             break;
         }
-        let ans = fibonacci(n);
-        println!("    {ans}");
+        match fibonacci(n) {
+            Some(ans) => println!("    {ans}"),
+            None => println!("    The answer was too big. Try a smaller number."),
+        }
         println!();
     }
     println!("Goodbye!");
@@ -39,15 +41,20 @@ fn get_num() -> u32 {
     num
 }
 
-fn fibonacci(n: u32) -> u64 {
+fn fibonacci(n: u32) -> Option<u64> {
     let mut ans: u64 = 0;
     let mut last: u64 = 1;
 
     for _ in 0..n {
         let temp = ans;
-        ans += last;
+        ans = match ans.checked_add(last) {
+            Some(ans) => ans,
+            None => {
+                return None;
+            }
+        };
         last = temp;
     }
 
-    ans
+    Some(ans)
 }
